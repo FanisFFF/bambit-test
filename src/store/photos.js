@@ -33,11 +33,7 @@ export const usePhotosStore = defineStore('photos', {
     actions: {
         async fetchAlbums() {
             const ids = this.search.trim().split(/\s+/).filter(id => /^\d+$/.test(id))
-            if (!ids.length) {
-                this.albums = []
-                return
-            }
-
+ 
             this.isLoading = true
             try {
                 const query = ids.map(id => `albumId=${id}`).join('&')
