@@ -62,15 +62,17 @@ export const usePhotosStore = defineStore('photos', {
         },
         loadState() {
             const raw = localStorage.getItem('photosState')
-            if (!raw) return
+            if (!raw) this.fetchAlbums();
+            else {
 
-            try {
-                const data = JSON.parse(raw)
-                this.search = data.search || ''
-                this.albums = data.albums || []
-                this.maxVisible = data.maxVisible || 30
-            } catch (e) {
-                console.error('Ошибка восстановления состояния', e)
+                try {
+                    const data = JSON.parse(raw)
+                    this.search = data.search || ''
+                    this.albums = data.albums || []
+                    this.maxVisible = data.maxVisible || 30
+                } catch (e) {
+                    console.error('Ошибка восстановления состояния', e)
+                }
             }
         },
         loadMore() {
