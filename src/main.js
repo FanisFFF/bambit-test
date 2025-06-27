@@ -12,6 +12,7 @@ const themeStore = useThemeStore()
 themeStore.loadTheme()
 const store = usePhotosStore();
 store.loadState();
+store.fetchAlbums();
 
 app.mount('#app')
 
